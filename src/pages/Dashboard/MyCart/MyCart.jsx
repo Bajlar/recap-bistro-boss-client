@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import useCart from '../../../hooks/useCart';
 import { FaTrashAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 
 const MyCart = () => {
   const [cart, refetch] = useCart();
@@ -41,15 +42,19 @@ const MyCart = () => {
       <Helmet>
         <title>Bistro Boss | My Cart</title>
       </Helmet>
+      <SectionTitle
+        subHeading={'My Cart'}
+        heading={'Wanna add more'}
+      ></SectionTitle>
       <section className="shadow-2xl pt-4">
-        <div className="flex gap-4 pl-12 mb-4">
+        <div className="flex gap-4 justify-center mb-4">
           <h3 className="text-3xl font-bold">Total Items: {cart.length}</h3>
           <h3 className="text-3xl font-bold">Total Price: ${total}</h3>
           <button className="btn bg-[#D1A054] hover:bg-[#D1A054] border-0">
             Pay
           </button>
         </div>
-        <div className="overflow-x-auto pl-12">
+        <div className="overflow-x-auto flex justify-center">
           <table className="table">
             {/* head */}
             <thead>

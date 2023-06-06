@@ -70,7 +70,7 @@ const Contact = () => {
               <input
                 type="text"
                 placeholder="Enter your name"
-                className="input input-bordered w-full"
+                className="input w-full"
               />
             </div>
             <div className="md:w-1/2">
@@ -80,7 +80,7 @@ const Contact = () => {
               <input
                 type="text"
                 placeholder="Enter your email"
-                className="input input-bordered w-full"
+                className="input w-full"
               />
             </div>
           </div>
@@ -91,15 +91,15 @@ const Contact = () => {
             <input
               type="text"
               placeholder="Enter your phone number"
-              className="input input-bordered w-full"
+              className="input w-full"
             />
           </div>
-          <div className="w-full mb-4">
+          <div className="w-full mb-2">
             <label className="label">
               <span className="label-text text-xl font-semibold">Message*</span>
             </label>
             <textarea
-              className="input input-bordered w-full min-h-[180px]"
+              className="input w-full min-h-[180px] pt-2 resize-none"
               name=""
               id=""
               placeholder="Write your message here"

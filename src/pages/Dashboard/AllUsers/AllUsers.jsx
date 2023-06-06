@@ -61,7 +61,7 @@ const AllUsers = () => {
   }
 
   return (
-    <div className="w-full min-h-screen pl-5">
+    <div className="w-full min-h-screen flex justify-center items-center">
       <section>
         <Helmet>
           <title>Bistro Boss | All Users</title>
