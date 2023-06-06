@@ -37,12 +37,12 @@ const MyCart = () => {
   }
 
   return (
-    <div className="w-full min-h-screen p-4">
+    <div className="w-full min-h-screen py-4">
       <Helmet>
         <title>Bistro Boss | My Cart</title>
       </Helmet>
-      <section>
-        <div className="flex gap-5 pl-12 mb-4">
+      <section className="shadow-2xl pt-4">
+        <div className="flex gap-4 pl-12 mb-4">
           <h3 className="text-3xl font-bold">Total Items: {cart.length}</h3>
           <h3 className="text-3xl font-bold">Total Price: ${total}</h3>
           <button className="btn bg-[#D1A054] hover:bg-[#D1A054] border-0">
@@ -76,14 +76,15 @@ const MyCart = () => {
                   </td>
                   <td>
                     <div>
-                      <div className="text-[#737373]">
-                        {item.name}
-                      </div>
+                      <div className="text-[#737373]">{item.name}</div>
                     </div>
                   </td>
                   <td className="text-[#737373]">${item.price}</td>
                   <td>
-                    <button onClick={() => handleDelete(item)} className="btn bg-[#B91C1C] hover:bg-[#B91C1C] border-0">
+                    <button
+                      onClick={() => handleDelete(item)}
+                      className="btn bg-[#B91C1C] hover:bg-[#B91C1C] border-0"
+                    >
                       <FaTrashAlt className="text-2xl"></FaTrashAlt>
                     </button>
                   </td>

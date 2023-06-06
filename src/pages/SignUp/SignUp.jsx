@@ -3,10 +3,10 @@ import { Helmet } from 'react-helmet-async';
 import signUpImg from '../../assets/others/authentication2.png';
 import { Link, useNavigate } from 'react-router-dom';
 import './SignUp.css';
-import { FaFacebookF, FaGithub, FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../providers/AuthProvider';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
+import SocialLogin from '../../components/SocialLogin/SocialLogin';
 
 const SignUp = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -26,16 +26,30 @@ const SignUp = () => {
       const loggedUser = result.user;
       // console.log(loggedUser);
       updateUserProfile(data.name, data.photo)
-        .then( () => {
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "User Create successfully",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          reset();
-          navigate("/");
+        .then(() => {
+          const saveUser = {name: data.name, email: data.email}
+          fetch("http://localhost:5000/users", {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json'
+            },
+            body: JSON.stringify(saveUser)
+          })
+            .then(res => res.json())
+            .then(data => {
+              // console.log(data);
+              if (data.insertedId) {
+                reset();
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "User created successfully.",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                navigate("/");
+              }
+          })
         })
         .catch((error) => {
           console.log(error);
@@ -160,25 +174,13 @@ const SignUp = () => {
               <p className="text-lg font-medium text-[#D1A054]">
                 Already registered? <Link to="/login">Go to log in</Link>
               </p>
-              <p className="text-lg font-medium">Or sign up with</p>
-              <div className="flex gap-6 justify-center">
-                <div>
-                  <button className="btn btn-circle btn-outline">
-                    <FaFacebookF></FaFacebookF>
-                  </button>
-                </div>
-                <div>
-                  <button className="btn btn-circle btn-outline">
-                    <FaGoogle></FaGoogle>
-                  </button>
-                </div>
-                <div>
-                  <button className="btn btn-circle btn-outline">
-                    <FaGithub></FaGithub>
-                  </button>
-                </div>
-              </div>
             </form>
+            <div className="text-center -mt-5">
+              <p className="text-lg font-medium">Or sign in with</p>
+              <div className="pb-5 mt-4">
+                <SocialLogin></SocialLogin>
+              </div>
+            </div>
           </div>
           <div className="md:w-1/2">
             <img src={signUpImg} alt="" />

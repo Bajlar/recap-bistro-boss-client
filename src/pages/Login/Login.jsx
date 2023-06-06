@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import loginImg from '../../assets/others/authentication2.png';
 import './Login.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FaFacebookF, FaGithub, FaGoogle } from 'react-icons/fa';
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
@@ -11,6 +10,7 @@ import {
 } from "react-simple-captcha";
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
+import SocialLogin from '../../components/SocialLogin/SocialLogin';
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
@@ -44,6 +44,7 @@ const Login = () => {
           timer: 1500,
         });
         form.reset();
+        // navigate('/');
         navigate(from, { replace: true });
       })
       .catch(error => {
@@ -130,25 +131,13 @@ const Login = () => {
               <p className="text-lg font-medium text-[#D1A054]">
                 New here? <Link to="/signUp">Create a New Account</Link>
               </p>
-              <p className="text-lg font-medium">Or sign in with</p>
-              <div className="flex gap-6 justify-center">
-                <div>
-                  <button className="btn btn-circle btn-outline">
-                    <FaFacebookF></FaFacebookF>
-                  </button>
-                </div>
-                <div>
-                  <button className="btn btn-circle btn-outline">
-                    <FaGoogle></FaGoogle>
-                  </button>
-                </div>
-                <div>
-                  <button className="btn btn-circle btn-outline">
-                    <FaGithub></FaGithub>
-                  </button>
-                </div>
-              </div>
             </form>
+            <div className="text-center -mt-5">
+              <p className="text-lg font-medium">Or sign in with</p>
+              <div className='pb-5 mt-4'>
+                <SocialLogin></SocialLogin>
+              </div>
+            </div>
           </div>
         </div>
       </div>
