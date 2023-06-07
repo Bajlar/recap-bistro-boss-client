@@ -4,6 +4,7 @@ import useCart from '../../../hooks/useCart';
 import { FaTrashAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
+import { Link } from 'react-router-dom';
 
 const MyCart = () => {
   const [cart, refetch] = useCart();
@@ -23,7 +24,7 @@ const MyCart = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/carts/${item._id}`, {
+        fetch(`https://recap-bistro-boss-server.vercel.app/carts/${item._id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -43,16 +44,18 @@ const MyCart = () => {
         <title>Bistro Boss | My Cart</title>
       </Helmet>
       <SectionTitle
-        subHeading={'My Cart'}
-        heading={'Wanna add more'}
+        subHeading={"My Cart"}
+        heading={"Wanna add more"}
       ></SectionTitle>
       <section className="shadow-2xl pt-4">
         <div className="flex gap-4 justify-center mb-4">
           <h3 className="text-3xl font-bold">Total Items: {cart.length}</h3>
           <h3 className="text-3xl font-bold">Total Price: ${total}</h3>
-          <button className="btn bg-[#D1A054] hover:bg-[#D1A054] border-0">
-            Pay
-          </button>
+          <Link to="/dashboard/payment">
+            <button className="btn bg-[#D1A054] hover:bg-[#D1A054] border-0">
+              Pay
+            </button>
+          </Link>
         </div>
         <div className="overflow-x-auto flex justify-center">
           <table className="table">

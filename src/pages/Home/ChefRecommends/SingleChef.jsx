@@ -21,7 +21,7 @@ const SingleChef = ({ item }) => {
         price,
         email: user.email,
       };
-      fetch("http://localhost:5000/carts", {
+      fetch("https://recap-bistro-boss-server.vercel.app/carts", {
         method: "POST",
         headers: {
           "content-type": "application/json",

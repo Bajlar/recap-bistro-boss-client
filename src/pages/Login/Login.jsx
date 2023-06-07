@@ -106,7 +106,7 @@ const Login = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text text-[##5D5FEF] text-lg font-semibold">
+                  <span className="label-text text-[#5D5FEF] text-lg font-semibold">
                     <LoadCanvasTemplate />
                   </span>
                 </label>
@@ -121,8 +121,8 @@ const Login = () => {
               {/* TODO: make button disable for captcha */}
               <div className="form-control mt-6">
                 <input
-                  // disabled={disabled}
-                  disabled={false}
+                  disabled={disabled}
+                  // disabled={false}
                   className="btn bg-[#D1A054] hover:bg-[#D1A054] capitalize border-0"
                   type="submit"
                   value="Sign In"

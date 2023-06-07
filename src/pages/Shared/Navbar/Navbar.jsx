@@ -1,23 +1,25 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { AuthContext } from '../../../providers/AuthProvider';
-import { FaShoppingCart } from 'react-icons/fa';
-import useCart from '../../../hooks/useCart';
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
+import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../../hooks/useCart";
+import useAdmin from "../../../hooks/useAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   // console.log(user, logOut);
   const [cart] = useCart();
   // console.log(cart);
+  const [isAdmin] = useAdmin();
 
   const handleSignOut = () => {
     // console.log('btn click');
     logOut()
-      .then( () => { })
-      .catch(error => {
+      .then(() => {})
+      .catch((error) => {
         console.log(error);
-      })
-  }
+      });
+  };
 
   const navItems = (
     <>
@@ -34,7 +36,9 @@ const Navbar = () => {
         <Link to="/contact">Contact</Link>
       </li>
       <li>
-        <Link to="/secret">Secret</Link>
+        <Link to={isAdmin ? "/dashboard/adminHome" : "/dashboard/userHome"}>
+          Dashboard
+        </Link>
       </li>
       <li>
         <Link to="/dashboard/myCart">
